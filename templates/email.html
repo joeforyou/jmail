@@ -13,23 +13,22 @@
     </style>
 </head>
 <body>
+    <h1>Jeopardy</h1>
+    <p>Hi {{ data.name }}, ready to play?</p>
+    <h2>For ${{ data.value }}</h2>
+    <h2>Category: {{ data.category }}</h2>
+    <h3>{{ data.question }}</h3>
+    <p>Original air date: {{ data.air_date }}</p>
     <div class="question-container">
-        <h1>Jeopardy</h1>
-        <p>Hi {{ data.name }}, ready to play?</p>
-        <h2>For ${{ data.value }}</h2>
-        <h2>Category: {{ data.category }}</h2>
-        <h3>{{ data.question }}</h3>
-        <p>Original air date: {{ data.air_date }}</p>
+        <hr>
     </div>
-    <div>
-        <h3>Answer: {{ data.answer }}</h3>
-        <p>Were you correct?</p>
-        <ul>
-            <li><a href="{{ data.yes_response_link }}">Yes</a></li>
-            <li><a href="{{ data.no_response_link }}">No</a></li>
-        </ul>
-        <p><a href="{{ data.scoreboard_link }}">What's the score?</a></p>
-    </div>
+    <h3>Answer: {{ data.answer }}</h3>
+    <p>Were you correct?</p>
+    <ul>
+        <li><a href="{{ data.yes_response_link }}">Yes</a></li>
+        <li><a href="{{ data.no_response_link }}">No</a></li>
+    </ul>
+    <p><a href="{{ data.scoreboard_link }}">What's the score?</a></p>
 </body>
 </html>
 
