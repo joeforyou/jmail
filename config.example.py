@@ -4,24 +4,14 @@ email = dict(
     password = '',
     reply = '',
     recipients = [
-        ''
+        dict(
+            name = '',
+            email = ''
+        )
     ]
 )
 
-# Google Sheets GIDs for generating link to specific month's tab.
-spreadsheet = dict(
-    link = '',
-    totals = '',
-    january = '',
-    february = '',
-    march = '',
-    april = '',
-    may = '',
-    june = '',
-    july = '',
-    august = '',
-    september = '',
-    october = '',
-    november = '',
-    december = '',
+# Google Form link.
+form = dict(
+    base_link = ''
 )

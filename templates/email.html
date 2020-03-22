@@ -13,22 +13,25 @@
 </head>
 <body>
     <div class="question-container">
-        <h1>Daily Jeopardy</h1>
-        <h2>Category</h2>
-        <h3>{{ data.category }}</h3>
-        {% if data.value != "None" %}
-            <h3>For ${{ data.value }}</h3>
-        {% else %}
-            <h3>For $200</h3>
-        {% endif %}
-        <h3>Clue</h3>
-        <p>{{ data.question }}</p>
+        <h1>Jeopardy</h1>
+        <hr>
+        <p>Hi {{ data.name }}, ready to play?</p>
+        <h2>For ${{ data.value }}</h2>
+        <h2>Category: {{ data.category }}</h2>
+        <h3>{{ data.question }}</h3>
+        <p>Original air date: {{ data.air_date }}</p>
     </div>
     <hr>
     <div>
         <h3>Answer: {{ data.answer }}</h3>
-        <p>Add your winnings here (if you were correct): {{ data.link }}</p>
+        <hr>
+        <p>Were you correct?</p>
+        <ul>
+            <li><a href="{{ data.yes_response_link }}">Yes</a></li>
+            <li><a href="{{ data.no_response_link }}">No</a></li>
+        </ul>
     </div>
 </body>
 </html>
+
 
