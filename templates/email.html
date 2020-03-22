@@ -7,20 +7,22 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style>
         .question-container {
-            height: 100vh;
+            height: 700px;
         }
     </style>
 </head>
 <body>
     <div class='question-container'>
-        <h1>Time for your daily Jeopardy question</h1>
+        <h1>Daily Jeopardy</h1>
         <h2>Category: {{ data.category }}</h2>
-        <h3>For ${{ data.value }}</h3>
-        <p>Write down your response before you scroll down to reveal the correct answer so we can score accurately. No cheating!</p>
-        <h3>{{ data.question }}</h3>
+        {% if data.value !== "None" %}
+            <h3>For ${{ data.value }}</h3>
+        {% else %}
+            <h3>For $200</h3>
+        {% endif %}
+        <h3>Clue: {{ data.question }}</h3>
     </div>
     <hr>
-    <p>Did you write your answer down? <em> You better have.</em></p>
     <div>
         <h3>Answer: {{ data.answer }}</h3>
         <p>Add your winnings here (if you were correct): {{ data.link }}</p>
