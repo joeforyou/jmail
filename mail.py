@@ -20,7 +20,7 @@ sendto=config.email['recipients'] # The list to send to.
 
 # Create message container - the correct MIME type is multipart/alternative.
 msg = MIMEMultipart('alternative')
-msg['Subject'] = "Daily Jeopardy Question for " + datetime.now().strftime('%m-%d')
+msg['Subject'] = "Daily Jeopardy for " + datetime.now().strftime('%m-%d')
 msg['From'] = replyto
 msg['To'] = replyto
 
