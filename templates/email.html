@@ -12,17 +12,18 @@
     <p>Hi {{ data.name }}, ready to play?</p>
     <h2>For ${{ data.value }}</h2>
     <h2>Category: {{ data.category }}</h2>
-    <h3>{{ data.question }}</h3>
+    <h2>{{ data.question }}</h2>
     <p>Original air date: {{ data.air_date }}</p>
     <hr />
+    <p>The answer is below...</p>
     <br style="height: 400px;" />
     <hr />
     <h3>Answer: {{ data.answer }}</h3>
     <hr />
     <p>Were you correct?</p>
     <ul>
-        <li><h3><a href="{{ data.yes_response_link }}">Yes</a></h3></li>
-        <li><h3><a href="{{ data.no_response_link }}">No</a></h3></li>
+        <li><h2><a href="{{ data.yes_response_link }}">Yes</a></h2></li>
+        <li><h2><a href="{{ data.no_response_link }}">No</a></h2></li>
     </ul>
     <hr />
     <p><a href="{{ data.scoreboard_link }}">What's the score?</a></p>
