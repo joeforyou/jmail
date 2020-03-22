@@ -15,17 +15,14 @@
 <body>
     <div class="question-container">
         <h1>Jeopardy</h1>
-        <hr>
         <p>Hi {{ data.name }}, ready to play?</p>
         <h2>For ${{ data.value }}</h2>
         <h2>Category: {{ data.category }}</h2>
         <h3>{{ data.question }}</h3>
         <p>Original air date: {{ data.air_date }}</p>
     </div>
-    <hr>
     <div>
         <h3>Answer: {{ data.answer }}</h3>
-        <hr>
         <p>Were you correct?</p>
         <ul>
             <li><a href="{{ data.yes_response_link }}">Yes</a></li>
