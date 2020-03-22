@@ -53,6 +53,7 @@ def send_mail():
         answer = json[0]['answer'],
         yes_response_link = yes_link,
         no_response_link = no_link,
+        scoreboard_link = config.sheet['link']
     )
     html = render_str('email.html', data=data)
 
