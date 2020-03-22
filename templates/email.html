@@ -6,11 +6,6 @@
     <title>Jeopardy Email</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="x-apple-disable-message-reformatting" />
-    <style type="text/css">
-        .question-container {
-            height: 100vh;
-        }
-    </style>
 </head>
 <body>
     <h1>Jeopardy</h1>
@@ -19,7 +14,7 @@
     <h2>Category: {{ data.category }}</h2>
     <h3>{{ data.question }}</h3>
     <p>Original air date: {{ data.air_date }}</p>
-    <div class="question-container">
+    <div style="height: 100vh;">
         <hr>
     </div>
     <h3>Answer: {{ data.answer }}</h3>
