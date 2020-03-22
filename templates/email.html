@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jeopardy Email</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
         .question-container {
-            height: 700px;
+            height: 100vh;
         }
     </style>
 </head>
 <body>
-    <div class='question-container'>
+    <div class="question-container">
         <h1>Daily Jeopardy</h1>
         <h2>Category: {{ data.category }}</h2>
-        {% if data.value !== "None" %}
+        {% if data.value != "None" %}
             <h3>For ${{ data.value }}</h3>
         {% else %}
             <h3>For $200</h3>
