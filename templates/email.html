@@ -15,14 +15,16 @@
     <h3>{{ data.question }}</h3>
     <p>Original air date: {{ data.air_date }}</p>
     <hr />
-    <br style="height: 100vh;" />
+    <br style="height: 400px;" />
     <hr />
     <h3>Answer: {{ data.answer }}</h3>
+    <hr />
     <p>Were you correct?</p>
     <ul>
-        <li><a href="{{ data.yes_response_link }}">Yes</a></li>
-        <li><a href="{{ data.no_response_link }}">No</a></li>
+        <li><h3><a href="{{ data.yes_response_link }}">Yes</a></h3></li>
+        <li><h3><a href="{{ data.no_response_link }}">No</a></h3></li>
     </ul>
+    <hr />
     <p><a href="{{ data.scoreboard_link }}">What's the score?</a></p>
 </body>
 </html>
