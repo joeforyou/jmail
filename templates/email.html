@@ -6,9 +6,15 @@
     <title>Jeopardy Email</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="x-apple-disable-message-reformatting" />
+    <style type="text/css">
+        .divider {
+            height: 30vh;
+        }
+    </style>
 </head>
 <body>
-    <h1>Jeopardy</h1>
+    <img width="300px" src="../images/jeopardy.jpg">
+    <hr>
     <p>Hi {{ data.name }}, ready to play?</p>
     <h2>For ${{ data.value }}</h2>
     <h2>Category: {{ data.category }}</h2>
@@ -16,7 +22,7 @@
     <p>Original air date: {{ data.air_date }}</p>
     <hr />
     <p>The answer is below...</p>
-    <br style="height: 400px;" />
+    <div class="divider"></div>
     <hr />
     <h3>Answer: {{ data.answer }}</h3>
     <hr />
