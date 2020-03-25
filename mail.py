@@ -56,7 +56,7 @@ def send_mail():
         scoreboard_link = config.sheet['link']
     )
 
-    image_path = os.path.join(os.path.dirname(__file__), 'templates/images/jeopardy.jpg')
+    image_path = config.image_link
     html = render_str('email.html', data=data, image_path=image_path)
 
     message = MIMEText(html, 'html')
