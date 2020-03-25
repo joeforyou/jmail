@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import smtplib, config, numbers
+import smtplib, config, numbers, os
 from render import render_str
 from trivia import get_random_question
 
@@ -55,7 +55,9 @@ def send_mail():
         no_response_link = no_link,
         scoreboard_link = config.sheet['link']
     )
-    html = render_str('email.html', data=data)
+
+    image_path = os.path.join(os.path.dirname(__file__), 'templates/images/jeopardy.jpg')
+    html = render_str('email.html', data=data, image_path=image_path)
 
     message = MIMEText(html, 'html')
     msg.attach(message)
