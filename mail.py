@@ -47,7 +47,7 @@ def send_mail():
     data = dict(
         clue_id = json[0]['id'],
         name = contact['name'],
-        category = string.capwords(json[0]['category']['title'], ' ')(),
+        category = string.capwords(json[0]['category']['title'], ' '),
         value = dollar_amount,
         question = json[0]['question'],
         air_date = air_date,
