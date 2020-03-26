@@ -37,9 +37,9 @@ def send_mail():
       dollar_amount = json[0]['value']
 
     # Generate prefilled Google Form link.
-    yes_link = config.form['base_link'] + '?usp=pp_url&entry.701029748=' + contact['name'] + '&entry.1912653224=Yes&entry.385374182=' + str(dollar_amount)
-    no_link = config.form['base_link'] + '?usp=pp_url&entry.701029748=' + contact['name'] + '&entry.1912653224=No&entry.385374182=' + str(dollar_amount)
-
+    common_params = config.form['base_link'] + '?usp=pp_url&entry.1855541136=' + json[0]['category'] + '&entry.1547920482=' + json[0]['question'] + '&entry.267256741=' + json[0]['answer'] + '&entry.385374182=' + str(dollar_amount) + '&entry.701029748=' + contact['name']
+    yes_link = common_params + '&entry.1912653224=Yes'
+    no_link  = common_params + '&entry.1912653224=No'
     # Format air date.
     datetime_obj = parse(json[0]['airdate'])
     air_date = datetime_obj.strftime('%b %d, %Y')
