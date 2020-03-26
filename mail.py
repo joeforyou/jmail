@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import smtplib, config, numbers, os
+import smtplib, config, numbers, string
 from render import render_str
 from trivia import get_random_question
 
@@ -47,7 +47,7 @@ def send_mail():
     data = dict(
         clue_id = json[0]['id'],
         name = contact['name'],
-        category = json[0]['category']['title'].title(),
+        category = string.capwords(json[0]['category']['title'], ' ')(),
         value = dollar_amount,
         question = json[0]['question'],
         air_date = air_date,
