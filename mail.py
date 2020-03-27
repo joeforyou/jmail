@@ -8,8 +8,7 @@ from email.mime.text import MIMEText
 from datetime import datetime
 from dateutil.parser import parse
 
-s = smtplib.SMTP('smtp.gmail.com', 587)
-s.starttls()
+s = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 s.ehlo()
 # Login as my Gmail user.
 username=config.email['username']
