@@ -27,7 +27,7 @@ def send_mail():
   msg = MIMEMultipart('alternative')
   msg['Subject'] = "Daily Jeopardy for " + datetime.now().strftime('%b %d')
   msg['From'] = replyto
-  msg['To'] = sendto
+  msg['To'] = ', '.join(sendto)
 
   # Make sure value is Number. If null, set a default value of 200.
   dollar_amount = 200
