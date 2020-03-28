@@ -1,0 +1,17 @@
+appName: jmail
+# Email config.
+email:
+  username: ''
+  password: ''
+  reply: ''
+  recipients:
+  - name: ''
+    email: ''
+
+# Google Form link.
+form:
+  base_link: ''
+
+# Google Sheets link.
+sheet:
+  link: ''
