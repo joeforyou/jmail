@@ -35,7 +35,7 @@ def send_mail():
     dollar_amount = json[0]['value']
 
   # Generate prefilled Google Form link.
-  common_params = config.form['base_link'] + '?usp=pp_url&entry.1855541136=' + json[0]['category']['title'] + '&entry.1547920482=' + json[0]['question'] + '&entry.267256741=' + json[0]['answer'] + '&entry.385374182=' + str(dollar_amount) + '&entry.701029748=' + contact['name']
+  common_params = config.form['base_link'] + '?usp=pp_url&entry.1855541136=' + json[0]['category']['title'] + '&entry.1547920482=' + json[0]['question'] + '&entry.267256741=' + json[0]['answer'] + '&entry.385374182=' + str(dollar_amount)
   yes_link = common_params + '&entry.1912653224=Yes'
   no_link  = common_params + '&entry.1912653224=No'
   
@@ -44,7 +44,6 @@ def send_mail():
   air_date = datetime_obj.strftime('%b %d, %Y')
   data = dict(
       clue_id = json[0]['id'],
-      name = contact['name'],
       category = string.capwords(json[0]['category']['title'], ' '),
       value = dollar_amount,
       question = json[0]['question'],
@@ -55,12 +54,11 @@ def send_mail():
       scoreboard_link = config.sheet['link']
   )
 
-  image_path = config.image_link
-  html = render_str('email.html', data=data, image_path=image_path)
+  html = render_str('email.html', data=data)
 
   message = MIMEText(html, 'html')
   msg.attach(message)
-  s.sendmail(replyto, sento, msg.as_string())
+  s.sendmail(replyto, sendto, msg.as_string())
 
   rslt=s.quit()
   print('Sendmail result=' + str(rslt[1]))
