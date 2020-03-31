@@ -1,17 +1,27 @@
 appName: jmail
-# Email config.
-email:
-  username: ''
-  password: ''
-  reply: ''
-  recipients:
+# Jeopardy mailbox account
+account: ''
+# Google app password
+password: ''
+# Google form URL
+form_url: ''
+
+games:
   - name: ''
-    email: ''
+    # List of players' emails.
+    recipients:
+      - name: ''
+        email: ''
 
-# Google Form link.
-form:
-  base_link: ''
+    # Google Sheets URL for scoreboard.
+    sheet:
+      url: ''
 
-# Google Sheets link.
-sheet:
-  link: ''
+  - name: ''
+    recipients:
+      - name: ''
+        email: ''
+
+    # Google Sheets URL for scoreboard.
+    sheet:
+      url: ''

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-import argparse, confuse, smtplib, numbers, string
+import smtplib, numbers, string
+from smtplib import SMTPException
 from render import render_str
 from trivia import get_random_question
 
@@ -8,33 +9,17 @@ from email.mime.text import MIMEText
 from datetime import datetime
 from dateutil.parser import parse
 
-# Configuration.
-config = confuse.Configuration('jmail', __name__)
-config.set_file('config.yaml')
-parser = argparse.ArgumentParser()
-args = parser.parse_args()
-config['email'].set_args(args)
-
-s = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-s.ehlo()
-# Login as my Gmail user.
-username=config['email']['username'].get()
-password=config['email']['password'].get()
-s.login(username,password)
-
-replyto=config['email']['reply'].get()
-sendto=[contact['email'] for contact in config['email']['recipients'].get()] # The list to send to.
-
-# Get the trivia question to put into email template.
-json = get_random_question()
-
 # Send the email.
-def send_mail():
+def send_mail(username, password, recipients, form_link, sheet_link, game_title):
+  replyto = str(username)
+
+  # Get the trivia question to put into email template.
+  json = get_random_question()
   # Create message container - the correct MIME type is multipart/alternative.
   msg = MIMEMultipart('alternative')
   msg['Subject'] = 'Daily Jeopardy for ' + datetime.now().strftime('%B %d')
   msg['From'] = replyto
-  msg['To'] = ', '.join(sendto)
+  msg['To'] = ', '.join(recipients)
 
   # Make sure value is Number. If null, set a default value of 200.
   dollar_amount = 200
@@ -42,10 +27,10 @@ def send_mail():
     dollar_amount = json[0]['value']
 
   # Generate prefilled Google Form link.
-  common_params = config['form']['base_link'].get() + '?usp=pp_url&entry.1855541136=' + json[0]['category']['title'] + '&entry.1547920482=' + json[0]['question'] + '&entry.267256741=' + json[0]['answer'] + '&entry.385374182=' + str(dollar_amount)
-  yes_link = common_params + '&entry.1912653224=Yes'
-  no_link  = common_params + '&entry.1912653224=No'
-  
+  common_params = str(form_link) + '?usp=pp_url&entry.1341812145=' + json[0]['category']['title'] + '&entry.170899811=' + json[0]['question'] + '&entry.793323660=' + json[0]['answer'] + '&entry.823702681=' + str(dollar_amount) + '&entry.439576061=' + game_title
+  yes_link = common_params + '&entry.756768512=Yes'
+  no_link  = common_params + '&entry.756768512=No'
+
   # Format air date.
   datetime_obj = parse(json[0]['airdate'])
   air_date = datetime_obj.strftime('%b %d, %Y')
@@ -58,14 +43,22 @@ def send_mail():
       answer = json[0]['answer'],
       yes_response_link = yes_link,
       no_response_link = no_link,
-      scoreboard_link = config['sheet']['link'].get()
+      scoreboard_link = str(sheet_link)
   )
 
   html = render_str('email.html', data=data)
+  msg.attach(MIMEText(html, 'html'))
 
-  message = MIMEText(html, 'html')
-  msg.attach(message)
-  s.sendmail(replyto, sendto, msg.as_string())
+  try:
+    s = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    s.ehlo()
+    # Login as my Gmail user.
+    s.login(username, password)
 
-  rslt=s.quit()
-  print('Sendmail result=' + str(rslt[1]))
+    s.sendmail(replyto, recipients, msg.as_string())
+  except SMTPException as e:
+    print(e)
+
+  result = s.quit()
+  print('Sendmail result: ' + str(result[1]))
+
