@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-import confuse
+import confuse, os
 from mail import send_mail
 
 # Load config file.
 config = confuse.Configuration('jmail', __name__)
-config.set_file('config.yaml')
+config.set_file(os.path.abspath(os.getcwd()) + 'config.yaml')
 
 def main():
     # Iterate through games.
