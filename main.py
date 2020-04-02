@@ -4,7 +4,7 @@ from mail import send_mail
 
 # Load config file.
 config = confuse.Configuration('jmail', __name__)
-config.set_file(os.path.abspath(os.getcwd()) + '/' + 'config.yaml')
+config.set_file(os.path.dirname(os.path.abspath(__file__)) + '/' + 'config.yaml')
 
 def main():
     # Iterate through games.
