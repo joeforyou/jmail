@@ -8,20 +8,11 @@ form_url: ''
 
 games:
   - name: ''
-    # List of players' emails.
-    recipients:
-      - name: ''
-        email: ''
-
     # Google Sheets URL for scoreboard.
     sheet:
       url: ''
 
   - name: ''
-    recipients:
-      - name: ''
-        email: ''
-
     # Google Sheets URL for scoreboard.
     sheet:
       url: ''

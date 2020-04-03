@@ -12,14 +12,14 @@ from dateutil.parser import parse
 # Send the email.
 def send_mail(username, password, recipients, form_link, sheet_link, game_title):
   replyto = str(username)
-
+  emails = [player['Email Address'] for player in recipients]
   # Get the trivia question to put into email template.
   json = get_random_question()
   # Create message container - the correct MIME type is multipart/alternative.
   msg = MIMEMultipart('alternative')
   msg['Subject'] = 'Daily Jeopardy for ' + datetime.now().strftime('%B %d')
   msg['From'] = replyto
-  msg['To'] = ', '.join(recipients)
+  msg['To'] = ', '.join(emails)
 
   # Make sure value is Number. If null, set a default value of 200.
   dollar_amount = 200
@@ -55,10 +55,11 @@ def send_mail(username, password, recipients, form_link, sheet_link, game_title)
     # Login as my Gmail user.
     s.login(username, password)
 
-    s.sendmail(replyto, recipients, msg.as_string())
+    s.sendmail(replyto, emails, msg.as_string())
   except SMTPException as e:
     print(e)
 
   result = s.quit()
   print('Sendmail result: ' + str(result[1]))
+
 
