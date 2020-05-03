@@ -14,7 +14,15 @@ def send_mail(username, password, recipients, form_link, sheet_link, game_title)
   replyto = str(username)
   emails = [player['Email Address'] for player in recipients]
   # Get the trivia question to put into email template.
-  json = get_random_question()
+  json = None
+  attempts = 3
+  while attempts > 0:
+    json = get_random_question()
+    if json[0]['question'] and json[0]['answer']:
+      break
+    else:
+      attempts = attempts - 1
+      continue
   # Create message container - the correct MIME type is multipart/alternative.
   msg = MIMEMultipart('alternative')
   msg['Subject'] = 'Daily Jeopardy for ' + datetime.now().strftime('%B %d')

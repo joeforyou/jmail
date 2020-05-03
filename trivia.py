@@ -8,4 +8,3 @@ def get_random_question():
         return json.loads(data)
     except urllib.error.URLError as e:
         print(e.reason)
-
