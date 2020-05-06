@@ -18,7 +18,7 @@ def send_mail(username, password, recipients, form_link, sheet_link, game_title)
   attempts = 3
   while attempts > 0:
     json = get_random_question()
-    if json[0]['question'] and json[0]['answer']:
+    if json[0]['question'] and json[0]['answer'] and json[0]['invalid_count'] is None:
       break
     else:
       attempts = attempts - 1
